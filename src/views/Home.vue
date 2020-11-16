@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="">
+    {{ currentWeather.name}}
+    {{ currentWeather.weather[0].description}}
+    {{ currentWeather.main.feels_like}}
+    <button @click="next">hot</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { mapState } from "vuex";
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: "Home",
+  components: {},
+  mounted() {
+    this.$store.dispatch("loadApp")
+
+  },
+  computed: {
+    ...mapState(["weatherList", "currentWeather"])
+  },
+  methods: {
+    next() {
+      this.$store.dispatch('nextWeather')
+    }
   }
-}
+};
 </script>
