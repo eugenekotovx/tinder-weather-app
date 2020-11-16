@@ -1,17 +1,17 @@
 <template>
-  <div class="">
-    {{ currentWeather.name}}
-    {{ currentWeather.weather[0].description}}
-    {{ currentWeather.main.feels_like}}
-    <button @click="next">hot</button>
-  </div>
+  <v-main>
+    <WeatherCard/>
+  </v-main>
 </template>
 
 <script>
+import WeatherCard from '@/components/WeatherCard'
 import { mapState } from "vuex";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    WeatherCard
+  },
   mounted() {
     this.$store.dispatch("loadApp")
 

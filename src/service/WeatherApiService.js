@@ -23,7 +23,7 @@ const randomCity = () => {
 
 export default {
   getWeather() {
-    return weatherApi.get('/weather?q=' + randomCity() + '&appid=' + apiKey)
+    return weatherApi.get('/weather?q=' + randomCity() + '&units=metric&appid=' + apiKey)
     .then(data => {
       return data
     })
