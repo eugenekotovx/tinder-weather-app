@@ -5,36 +5,74 @@
     class="mx-auto rounded-lg"
     max-width="400"
   >
-    <v-card-title> {{ weather.name }}, {{ weather.sys.country}} </v-card-title>
-    <v-card-subtitle> {{ weather.weather[0].description }} </v-card-subtitle>
-    <v-card-text>
-      <v-row align="center">
-        <v-col
-          class="display-3"
-          cols="6"
+    <template v-if="weather == false">
+      <v-sheet
+        :style="{ background: $vuetify.theme.themes.dark.background }"
+        class="pa-3"
+      >
+        <v-skeleton-loader
+          class="mx-auto rounded-lg"
+          max-width="400"
+          color="secondary"
+          type="card"
         >
-          <h6>{{ weather.main.temp + "°C"}}</h6>
-        </v-col>
-        <v-col cols="6">
-          <v-img
-          :src="
-            'http://openweathermap.org/img/wn/' +
-              weather.weather[0].icon +
-              '@4x.png'
-          "
-            width="150"
-          ></v-img>
-        </v-col>
-      </v-row>
-    </v-card-text>
+
+        </v-skeleton-loader>
+      </v-sheet>
+    </template>
+    <template v-else>
+      <v-card-title>
+        {{ weather.name }}, {{ weather.sys.country }}
+      </v-card-title>
+      <v-card-subtitle> {{ weather.weather[0].description }} </v-card-subtitle>
+      <v-card-text>
+        <v-row align="center">
+          <v-col class="display-3 text-center" cols="6">
+            <h6>{{ weather.main.temp + "°C" }}</h6>
+            <v-card-subtitle>
+              {{ "Feels like: " + weather.main.feels_like + "°C" }}
+            </v-card-subtitle>
+          </v-col>
+          <v-col cols="6">
+            <v-img
+              :src="
+                'http://openweathermap.org/img/wn/' +
+                  weather.weather[0].icon +
+                  '@4x.png'
+              "
+              width="150"
+            ></v-img>
+          </v-col>
+        </v-row>
+      </v-card-text>
+
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-send</v-icon>
+        </v-list-item-icon>
+        <v-list-item-subtitle>
+          {{ weather.wind.speed + " m/s" }} -
+          {{ weather.wind.deg + " deg" }}</v-list-item-subtitle
+        >
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-cloud-download</v-icon>
+        </v-list-item-icon>
+        <v-list-item-subtitle>
+          {{ weather.main.humidity + " %" }}</v-list-item-subtitle
+        >
+      </v-list-item>
+    </template>
   </v-card>
 </template>
 
 <script>
 export default {
-  computed: {
-    weather() {
-      return this.$store.state.currentWeather;
+  props: {
+    weather: {
+      type: Object,
+      required: true
     }
   }
 };
