@@ -1,11 +1,11 @@
 <template>
   <v-main>
-    <WeatherCard/>
+    <WeatherCard :weather="currentWeather" />
   </v-main>
 </template>
 
 <script>
-import WeatherCard from '@/components/WeatherCard'
+import WeatherCard from "@/components/WeatherCard";
 import { mapState } from "vuex";
 export default {
   name: "Home",
@@ -13,16 +13,11 @@ export default {
     WeatherCard
   },
   mounted() {
-    this.$store.dispatch("loadApp")
-
+    this.$store.dispatch("loadApp");
   },
   computed: {
     ...mapState(["weatherList", "currentWeather"])
   },
-  methods: {
-    next() {
-      this.$store.dispatch('nextWeather')
-    }
-  }
+  methods: {}
 };
 </script>
