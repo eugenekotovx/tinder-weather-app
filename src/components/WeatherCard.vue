@@ -48,7 +48,7 @@
 
       <v-list-item>
         <v-list-item-icon>
-          <v-icon>mdi-send</v-icon>
+          <v-icon> mdi-weather-windy</v-icon>
         </v-list-item-icon>
         <v-list-item-subtitle>
           {{ weather.wind.speed + " m/s" }} -
@@ -63,6 +63,7 @@
           {{ weather.main.humidity + " %" }}</v-list-item-subtitle
         >
       </v-list-item>
+      <slot></slot>
     </template>
   </v-card>
 </template>
@@ -71,7 +72,7 @@
 export default {
   props: {
     weather: {
-      type: Object,
+      type: [Object, Boolean],
       required: true
     }
   }
