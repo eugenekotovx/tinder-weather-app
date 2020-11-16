@@ -1,16 +1,20 @@
 <template>
   <v-main>
-    <WeatherCard :weather="currentWeather" />
+    <WeatherCard :weather="currentWeather">
+      <Controls :weather="currentWeather" />
+    </WeatherCard>
   </v-main>
 </template>
 
 <script>
 import WeatherCard from "@/components/WeatherCard";
+import Controls from "@/components/Controls";
 import { mapState } from "vuex";
 export default {
   name: "Home",
   components: {
-    WeatherCard
+    WeatherCard,
+    Controls
   },
   mounted() {
     this.$store.dispatch("loadApp");
