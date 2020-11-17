@@ -1,11 +1,8 @@
 <template lang="html">
   <v-expansion-panels
     color="secondary"
-    class="mx-auto rounded-lg"
-    max-width="200"
+    class="mx-auto rounded-lg xs"
   >
-  <h3>Liked History:</h3>
-    <v-expansion-panel v-for="likedWeather in likedList" :key="likedWeather.id">
       <v-expansion-panel-header>
         {{likedWeather.name}}
       </v-expansion-panel-header>
