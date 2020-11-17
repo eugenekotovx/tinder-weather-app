@@ -1,9 +1,8 @@
 <template>
-  <v-main>
-    <WeatherCard :weather="currentWeather">
+
+    <WeatherCard class="mt-14" :weather="currentWeather">
       <Controls :weather="currentWeather" />
     </WeatherCard>
-  </v-main>
 </template>
 
 <script>
