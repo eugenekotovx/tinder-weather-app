@@ -1,10 +1,5 @@
 <template lang="html">
-
-    <v-row align="center">
-      <v-col class="display-3 text-center">
-        <LikedList :likedList="likedHistory" />
-      </v-col>
-    </v-row>
+  <LikedList :likedList="likedHistory" />
 </template>
 
 <script>
