@@ -1,7 +1,7 @@
 <template lang="html">
   <v-card
     elevation="12"
-    color="secondary"
+    color="primary"
     class="mx-auto rounded-lg"
     max-width="400"
   >
@@ -16,20 +16,19 @@
           color="secondary"
           type="card"
         >
-
         </v-skeleton-loader>
       </v-sheet>
     </template>
     <template v-else>
-      <v-card-title>
+      <v-card-title class="white--text">
         {{ weather.name }}, {{ weather.sys.country }}
       </v-card-title>
-      <v-card-subtitle> {{ weather.weather[0].description }} </v-card-subtitle>
+      <v-card-subtitle class="white--text"> {{ weather.weather[0].description }} </v-card-subtitle>
       <v-card-text>
         <v-row align="center">
           <v-col class="display-3 text-center" cols="6">
-            <h6>{{ weather.main.temp + "°C" }}</h6>
-            <v-card-subtitle>
+            <h6 class="white--text">{{ weather.main.temp + "°C" }}</h6>
+            <v-card-subtitle class="white--text">
               {{ "Feels like: " + weather.main.feels_like + "°C" }}
             </v-card-subtitle>
           </v-col>
@@ -50,7 +49,7 @@
         <v-list-item-icon>
           <v-icon> mdi-weather-windy</v-icon>
         </v-list-item-icon>
-        <v-list-item-subtitle>
+        <v-list-item-subtitle class="white--text">
           {{ weather.wind.speed + " m/s" }} -
           {{ weather.wind.deg + " deg" }}</v-list-item-subtitle
         >
@@ -59,7 +58,7 @@
         <v-list-item-icon>
           <v-icon>mdi-cloud-download</v-icon>
         </v-list-item-icon>
-        <v-list-item-subtitle>
+        <v-list-item-subtitle class="white--text">
           {{ weather.main.humidity + " %" }}</v-list-item-subtitle
         >
       </v-list-item>
