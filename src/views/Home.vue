@@ -1,14 +1,13 @@
 <template>
-
-    <WeatherCard class="mt-14" :weather="currentWeather">
-      <Controls :weather="currentWeather" />
-    </WeatherCard>
+  <WeatherCard class="mt-4" :weather="currentWeather">
+    <Controls :weather="currentWeather" />
+  </WeatherCard>
 </template>
 
 <script>
 import WeatherCard from "@/components/WeatherCard";
 import Controls from "@/components/Controls";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -16,10 +15,13 @@ export default {
     Controls
   },
   mounted() {
-    this.$store.dispatch("loadApp");
+    if (!this.$store.state.weatherList.length) {
+      this.$store.dispatch("loadApp");
+    }
   },
   computed: {
-    ...mapState(["weatherList", "currentWeather"])
+    ...mapState(["weatherList"]),
+    ...mapGetters(["currentWeather"])
   },
   methods: {}
 };

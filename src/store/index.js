@@ -6,38 +6,29 @@ Vue.use(Vuex);
 import WeatherApi from "@/service/WeatherApiService.js";
 export default new Vuex.Store({
   state: {
-    currentWeather: false,
     weatherList: [],
-    likedHistory: []
+    likedHistory: [],
   },
   mutations: {
     SET_WEATHER(state, weather) {
       state.weatherList.push(weather);
-    },
-    SET_CURRENT_WEATHER(state) {
-      state.currentWeather = state.weatherList[0];
     },
     NEXT_WEATHER(state) {
       state.weatherList.shift()
     },
     ADD_TO_LIKED(state, weather) {
       state.likedHistory.push(weather)
-    }
+    },
   },
   actions: {
     setWeather({ commit }, weather) {
       commit("SET_WEATHER", weather);
     },
-    setCurrentWeather({ commit }) {
-      commit("SET_CURRENT_WEATHER");
-    },
     async loadApp({ dispatch}) {
       await dispatch('loadWeatherList')
-      dispatch('setCurrentWeather')
     },
     async nextWeather({dispatch, commit}, weather) {
       await commit("NEXT_WEATHER")
-      await commit("SET_CURRENT_WEATHER")
       await dispatch("loadNewWeather")
       if (weather) {
        await commit("ADD_TO_LIKED", weather)
@@ -70,5 +61,14 @@ export default new Vuex.Store({
       return
     }
   },
-  modules: {}
+  modules: {},
+  getters: {
+    currentWeather: state => {
+      if (state.weatherList.length) {
+        return state.weatherList[0]
+      } else {
+        return false
+      }
+    }
+  }
 });
