@@ -18,20 +18,29 @@
       <v-spacer></v-spacer>
       <v-item-group class="d-flex">
         <router-link tag="div" :to="{ path: '/' }">
-          <v-btn class="accent--text secondary mr-10">
-            <v-icon class="mr-4">mdi-home</v-icon> home
+          <v-btn
+            class="accent--text secondary"
+            :class="!$vuetify.breakpoint.xs ? 'mr-4' : 'mr-2'"
+          >
+            <v-icon>mdi-home</v-icon>
+            <v-item v-if="!$vuetify.breakpoint.xs" class="ml-4">
+              <span>Home</span>
+            </v-item>
           </v-btn>
         </router-link>
         <router-link tag="div" :to="{ path: '/liked' }">
           <v-btn class="accent--text secondary"
-            ><v-icon class="mr-4">mdi-heart</v-icon> liked
+            ><v-icon>mdi-heart</v-icon>
+            <v-item v-if="!$vuetify.breakpoint.xs" class="ml-4">
+              <span>Liked</span></v-item
+            >
           </v-btn>
         </router-link>
       </v-item-group>
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -47,10 +56,7 @@ export default {
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
     }
-  },
-  data: () => ({
-    //
-  })
+  }
 };
 </script>
 
@@ -59,6 +65,6 @@ export default {
   background-color: var(--v-background-base, #455a64) !important;
 }
 .theme--light.v-application {
-  background-color: var(--v-background-base, #FFFACC) !important;
+  background-color: var(--v-background-base, #fffacc) !important;
 }
 </style>
