@@ -1,7 +1,15 @@
 <template>
-  <WeatherCard class="mt-4" :weather="currentWeather" :VerdictControls="true">
-    <VerdictControls :weather="currentWeather" />
-  </WeatherCard>
+  <div class="">
+    <div class="title">
+      <h1 class="accent--text mb-4">
+        Just a tinder-like app with openWeatherApi
+      </h1>
+      <v-icon color="accent mt-2" large> mdi-hand-peace-variant </v-icon>
+    </div>
+    <WeatherCard class="mt-4" :weather="currentWeather" :VerdictControls="true">
+      <VerdictControls :weather="currentWeather" />
+    </WeatherCard>
+  </div>
 </template>
 
 <script>
@@ -30,4 +38,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.title {
+  text-align: center;
+}
+</style>
