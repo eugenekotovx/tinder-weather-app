@@ -63,7 +63,7 @@
 
       <v-list-item>
         <v-list-item-icon>
-          <v-icon> mdi-weather-windy</v-icon>
+          <v-icon color="white"> mdi-weather-windy</v-icon>
         </v-list-item-icon>
         <v-list-item-subtitle class="white--text">
           {{ weather.wind.speed + " m/s" }} -
@@ -72,7 +72,7 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-icon>
-          <v-icon>mdi-cloud-download</v-icon>
+          <v-icon color="white">mdi-cloud-download</v-icon>
         </v-list-item-icon>
         <v-list-item-subtitle class="white--text">
           {{ weather.main.humidity + " %" }}</v-list-item-subtitle
