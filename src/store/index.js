@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     weatherList: [],
     likedHistory: [],
+    lastVerdict: ""
   },
   mutations: {
     SET_WEATHER(state, weather) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     ADD_TO_LIKED(state, weather) {
       state.likedHistory.push(weather)
+    },
+    UPD_VERDICT(state, verdict) {
+      state.lastVerdict = verdict;
     },
   },
   actions: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
     },
     addToLiked({commit}, weather) {
       commit("ADD_TO_LIKED", weather)
+    refreshVerdict({ commit }) {
+      commit("UPD_VERDICT", "");
+      commit("NEXT_WEATHER");
     },
     async loadNewWeather({dispatch}) {
       await WeatherApi.getWeather()
