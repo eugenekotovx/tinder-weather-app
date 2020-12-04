@@ -7,20 +7,28 @@
       class="rounded-lg"
     >
       <v-expansion-panel-header color="primary">
-       <h3 :class="$vuetify.theme.dark ? 'accent--text' : 'secondary--text'"> {{ likedWeather.name }} </h3>
+        <h3 :class="$vuetify.theme.dark ? 'accent--text' : 'secondary--text'">
+          {{ likedWeather.name }}
+          <v-icon dark v-if="likedWeather.favorite">
+            mdi-star
+          </v-icon>
+        </h3>
       </v-expansion-panel-header>
       <v-expansion-panel-content color="secondary">
         <WeatherCard class="mt-10 mb-10" :weather="likedWeather" />
+        <CardControls :weather="likedWeather" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
 
 <script>
+import CardControls from "@/components/CardControls";
 import WeatherCard from "@/components/WeatherCard";
 export default {
   components: {
-    WeatherCard
+    WeatherCard,
+    CardControls
   },
   props: {
     likedList: {
