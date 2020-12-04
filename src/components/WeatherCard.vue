@@ -1,9 +1,13 @@
 <template lang="html">
   <v-card
+    fluid
     elevation="12"
     color="primary"
     class="mx-auto rounded-lg"
     max-width="400"
+    width="100%"
+    v-hammer:swipe="swipeEvent"
+    :class="checkTheLastVerdict"
   >
     <template v-if="weather == false">
       <v-sheet
@@ -20,10 +24,22 @@
       </v-sheet>
     </template>
     <template v-else>
+      <template v-if="lastVerdict === true">
+        <h1 class="green--text verdict like">
+          LIKE
+        </h1>
+      </template>
+      <template v-else-if="lastVerdict === false">
+        <h1 class="red--text verdict dislike">
+          DISLIKE
+        </h1>
+      </template>
       <v-card-title class="white--text">
         {{ weather.name }}, {{ weather.sys.country }}
       </v-card-title>
-      <v-card-subtitle class="white--text"> {{ weather.weather[0].description }} </v-card-subtitle>
+      <v-card-subtitle class="white--text">
+        {{ weather.weather[0].description }}
+      </v-card-subtitle>
       <v-card-text>
         <v-row align="center">
           <v-col class="display-3 text-center" cols="6">
@@ -68,12 +84,21 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+import lastVerdictMixin from "@/mixins/lastVerdictMixin";
+import verdict from "@/mixins/verdictMixin.js";
 export default {
   props: {
     weather: {
       type: [Object, Boolean],
       required: true
+    },
+    VerdictControls: {
+      type: Boolean,
+      default: false
     }
+  },
+  mixins: [lastVerdictMixin, verdict],
   methods: {
     swipeEvent(params) {
       if (this.VerdictControls == true) {
@@ -91,4 +116,35 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="scss" scoped>
+.like {
+  border: 10px green solid;
+}
+.dislike {
+  border: 10px red solid;
+}
+.weather {
+  cursor: pointer;
+  opacity: 1;
+  &--false {
+    transform: translate3d(-500px, 100px, 0);
+    transition: all 0.5s ease-in;
+    opacity: 0;
+  }
+  &--true {
+    transform: translate3d(500px, -100px, 0);
+    transition: all 0.5s ease-in;
+    opacity: 0;
+  }
+}
+.verdict {
+  position: absolute;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  top: 25%;
+  font-size: 50px;
+  z-index: 1;
+}
+</style>
