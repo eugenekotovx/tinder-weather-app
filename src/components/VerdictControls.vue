@@ -1,12 +1,26 @@
 <template lang="html">
   <v-card-actions>
-    <v-btn class="mx-2" fab dark x-large color="secondary" @click="nextWeather(false)">
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      x-large
+      color="secondary"
+      @click="verdict(false)"
+    >
       <v-icon dark color="accent">
         mdi-thumb-down
       </v-icon>
     </v-btn>
     <v-spacer></v-spacer>
-    <v-btn class="mx-2" fab dark x-large color="secondary" @click="nextWeather(weather)">
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      x-large
+      color="secondary"
+      @click="verdict(weather)"
+    >
       <v-icon dark color="accent">
         mdi-thumb-up
       </v-icon>
@@ -15,11 +29,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import verdict from '@/mixins/verdictMixin.js'
 export default {
-  methods: {
-    ...mapActions(['nextWeather'])
-  },
+  mixins: [verdict],
   props: {
     weather: {
       type: Object
