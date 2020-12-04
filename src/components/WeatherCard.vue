@@ -74,6 +74,19 @@ export default {
       type: [Object, Boolean],
       required: true
     }
+  methods: {
+    swipeEvent(params) {
+      if (this.VerdictControls == true) {
+        if (params.direction === 4) {
+          this.verdict(this.weather);
+        } else if (params.direction === 2) {
+          this.verdict(false);
+        }
+      }
+    }
+  },
+  computed: {
+    ...mapState(['lastVerdict'])
   }
 };
 </script>
