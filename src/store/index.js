@@ -57,8 +57,20 @@ export default new Vuex.Store({
           .catch(error => {
             console.log(error);
           });
+    removeFromLikedHistory({ state, commit }, weather) {
+      let weatherFromLikedList = state.likedHistory.indexOf(weather);
+      commit("REMOVE_FROM_LIKED_HISTORY", weatherFromLikedList);
+    },
+    addComment({ commit }, weather) {
+      commit("UPD_HISTORY", weather);
+    },
+    addToFavorites({ commit }, weather) {
+      if (!weather.favorite) {
+        Vue.set(weather, "favorite", true);
+      } else if (weather.favorite == true) {
+        Vue.set(weather, "favorite", false);
       }
-      return
+      commit("UPD_HISTORY", weather);
     }
   },
   modules: {},
