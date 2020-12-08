@@ -53,22 +53,12 @@
             text
             rounded
             class="my-2"
-            href="https://github.com/eugenekotovx"
+            href="https://github.com/eugenekotovx/tinder-weather-app"
           >
             <v-icon large>
               mdi-github
             </v-icon>
           </v-btn>
-          <v-btn
-            color="white"
-            text
-            rounded
-            class="my-2"
-            href="mailto:mrkev2112x@gmail.com"
-          >
-            <v-icon large> mdi-gmail </v-icon>
-          </v-btn>
-          <span class="title my-2 mx-2 white--text"> <h4>Eugene Kotov</h4></span>
         </v-row>
       </v-footer>
     </template>
